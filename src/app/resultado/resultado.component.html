@@ -1,0 +1,9 @@
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Questionário Áudio</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Resultado</h6>
+    <p class="card-text alert alert-primary">Resposta Correta: {{questionAudio}}</p>
+    <p [class]="selectedAudio === questionAudio ? 'alert card-text alert-success' : 'alert  card-text alert-danger'">Resposta do Usúario: {{selectedAudio}}</p>
+
+  </div>
+</div>

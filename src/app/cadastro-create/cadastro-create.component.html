@@ -1,0 +1,86 @@
+<div class="container">
+  <mat-grid-list cols="1" rowHeight="100px">
+    <mat-grid-tile class="titulo">
+      <h1>Teste Computadorizado de Atenção auditiva</h1>
+    </mat-grid-tile>
+    <mat-grid-tile class="alert_">Inicio</mat-grid-tile>
+  </mat-grid-list>
+
+  <main>
+
+    <div class="article-left">
+
+      <article class="instrucoes">
+        <div class="texto">
+          <h3>TESTE DE ATENÇÃO AUDITIVA</h3>
+          <p>
+            Neste teste o computador emitirá alternadamente, sons da voz humana proferindo nomes de&nbsp;
+
+            Quando você ouvir um nome do grupo CERTO, pressione a barra de espaço ou toque na barra vermelha abaixo o
+            mais rápido que puder. Se ouvir um nome do grupo errado, não tome nenhuma ação.
+            <strong>objetos, animais ou comidas</strong>
+          </p>
+        </div>
+
+
+        <div class="container-form">
+          <h2> Informe seus dados para iniciar o teste </h2>
+          <form [formGroup]="cadastroForm" (ngSubmit)="onFormSubmit(cadastroForm.value)">
+            <span>Nome</span> <input type="text" formControlName="nome" placeholder="digite seu nome">
+            <span>Email</span> <input formControlName="email" placeholder="digite seu email">
+            <span>Idade</span> <input type="number" formControlName="idade" placeholder="digite sua idade">
+            <span>IDHM</span> <input formControlName="iDHM" placeholder="digite sua iDHM">
+            <span>Instrução</span>
+            <div class="form-select">
+              <select name="instrucao" formControlName="instrucao">
+                <option *ngFor="let instrucao of instrucaoList" [value]="instrucao.value">{{instrucao.name}}</option>
+              </select>
+            </div>
+            <span>Ano de Escolaridade</span>
+            <input formControlName="anosdeescolaridade" placeholder="digite o ano de escolaridade">
+            <span>Genero</span>
+            <div class="form-select">
+              <input type="radio" id="m" name="genero" formControlName="genero" value="M">
+              <label for="m">Masculino</label>
+              <input type="radio" id="f" name="genero" formControlName="genero" value="F">
+              <label for="f">Feminino</label>
+            </div>
+            <span>Later</span>
+            <div class="form-select">
+              <input id="E" type="radio" name="later" formControlName="later" value="E">
+              <label for="E">Esquerda</label>
+              <input id="D" type="radio" name="later" formControlName="later" value="D">
+              <label for="D">Direita</label>
+            </div>
+            <span>Duração</span>
+            <div class="form-select">
+              <input id="40" type="radio" name="duracao" formControlName="duracao" value="40">
+              <label for="40">40 min</label>
+              <input id="80" type="radio" name="duracao" formControlName="duracao" value="80">
+              <label for="80">80 min</label>
+              <input id="120" type="radio" name="duracao" formControlName="duracao" value="120">
+              <label for="120">120 min</label>
+            </div>
+
+            <div class="form-group text-center">
+              <button class="btn btn-secondary" type="submit" mat-raised-button color="secondary">Enviar</button>
+              <button class="btn btn-secondary" type="reset" mat-raised-button color="secondary">Limpar</button>
+            </div>
+
+          </form>
+
+        </div>
+      </article>
+    </div>
+
+    <img src="http://elevecomunicacao.com/testea/v36/images/goal2.jpg">
+
+
+  </main>
+</div>
+
+<footer>
+  <div class="copyright">
+    ©️2020 - DESENVOLVIDO POR ELEVECOMUNICAÇÃO
+  </div>
+</footer>
