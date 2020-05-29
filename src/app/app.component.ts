@@ -18,6 +18,7 @@ import {
   takeUntil
 } from 'rxjs/operators';
 import {ActivatedRoute, Router} from '@angular/router'; // add this 1 of 4
+import { SharedService } from './shared.service';
 
 @Component({
   selector: 'app-root',
@@ -26,7 +27,17 @@ import {ActivatedRoute, Router} from '@angular/router'; // add this 1 of 4
 })
 
 
-export class AppComponent {
 
+export class AppComponent implements OnInit {
+
+  tituloPagina = '';
+
+  constructor(private shared: SharedService) {
+
+  }
+
+  ngOnInit() {
+    this.shared.atual.subscribe( p => this.tituloPagina = p);
+  }
 
 }

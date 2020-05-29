@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Cadastro } from '../model/cadastro.model';
 import { CadastroService } from 'src/app/shared/cadastro.service';
-import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators, FormBuilder} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
+import { SharedService } from '../shared.service';
 
 
 @Component({
@@ -32,22 +33,34 @@ export class CadastroCreateComponent implements OnInit {
   ];
 
 
-  cadastroForm = new FormGroup({
-  nome: new FormControl(),
-  email:  new FormControl(),
-  idade: new FormControl(),
-  iDHM: new FormControl(),
-  instrucao: new FormControl(),
-  anosdeescolaridade: new FormControl(),
-  genero: new FormControl(),
-  later: new FormControl(),
-  duracao: new FormControl(),
+  cadastroForm: FormGroup = this.fb.group({
+    nome: ['', Validators.required],
+  email:  ['', Validators.required],
+  idade: ['', Validators.required],
+  iDHM: ['', Validators.required],
+  instrucao: ['', Validators.required],
+  anosdeescolaridade: ['', Validators.required],
+  genero: ['', Validators.required],
+  later: ['', Validators.required],
+  duracao: ['', Validators.required],
   });
 
   // matcher = new MyErrorStateMatcher();
 
-  constructor(private cadastroService: CadastroService, private router: Router) { }
-  ngOnInit(): void {
+  constructor(
+    private cadastroService: CadastroService,
+    private router: Router,
+    private fb: FormBuilder, private shared: SharedService) { }
+
+    ngOnInit(): void {
+
+      this.shared.updatedDataSelection('Teste Computadorizado de Atenção auditiva');
+
+    }
+
+
+  get form() {
+    return this.cadastroForm.controls;
   }
 
 
@@ -55,6 +68,7 @@ export class CadastroCreateComponent implements OnInit {
 
         this.cadastroService.createCadastro(cadastro).subscribe((resp) => {
         this.cadastroService.showMessage('Criado!');
+        console.log(resp);
         const usuarioId = cadastro.id;
         this.router.navigate([`/treinar/${usuarioId}`]);
       });

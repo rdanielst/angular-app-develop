@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 
 import {ActivatedRoute, Router} from '@angular/router'; // add this 1 of 4
+import { SharedService } from '../shared.service';
 
 @Component({
   selector: 'app-treinar',
@@ -66,8 +67,8 @@ export class TreinarComponent implements OnInit {
 
   public keypressed;
 
-  constructor(private route: ActivatedRoute, private router: Router) {
-
+  constructor(private route: ActivatedRoute, private router: Router, private shared: SharedService) {
+    this.shared.updatedDataSelection('TREINO');
     this.n_audio = Math.floor(Math.random() * this.playlist.length - 1);
     this.questionAudio = this.playlist[this.n_audio].name;
 
@@ -79,7 +80,9 @@ export class TreinarComponent implements OnInit {
   }
 
 
+
   ngOnInit(): void {
+
   }
 
   @HostListener('window:keydown', ['$event'])

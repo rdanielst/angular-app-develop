@@ -1,8 +1,8 @@
-<div class="container">
+<!--<div class="container">-->
   <mat-grid-list cols="1" rowHeight="100px">
-    <mat-grid-tile class="titulo">
+    <!--<mat-grid-tile class="titulo">
       <h1>Teste Computadorizado de Atenção auditiva</h1>
-    </mat-grid-tile>
+    </mat-grid-tile>-->
     <mat-grid-tile class="alert_">Inicio</mat-grid-tile>
   </mat-grid-list>
 
@@ -26,34 +26,52 @@
         <div class="container-form">
           <h2> Informe seus dados para iniciar o teste </h2>
           <form [formGroup]="cadastroForm" (ngSubmit)="onFormSubmit(cadastroForm.value)">
-            <span>Nome</span> <input type="text" formControlName="nome" placeholder="digite seu nome">
-            <span>Email</span> <input formControlName="email" placeholder="digite seu email">
-            <span>Idade</span> <input type="number" formControlName="idade" placeholder="digite sua idade">
-            <span>IDHM</span> <input formControlName="iDHM" placeholder="digite sua iDHM">
+            <span>Nome</span> <input type="text" class="form-control"
+              [ngClass]="{'border-form-validator':form.nome.errors && (form.nome.dirty || form.nome.touched)}" formControlName="nome" placeholder="digite seu nome">
+            <div *ngIf="form.nome.errors && (form.nome.dirty || form.nome.touched)" class="msg-errors-rp"> Por favor digite o seu nome </div>
+
+            <span>Email</span> <input formControlName="email" placeholder="digite seu email" class="form-control"
+              [ngClass]="{'border-form-validator':form.email.errors && (form.email.dirty || form.email.touched)}">
+            <div *ngIf="form.email.errors && (form.email.dirty || form.email.touched)" class="msg-errors-rp"> Por favor digite o seu email </div>
+
+            <span>Idade</span> <input type="number" formControlName="idade" placeholder="digite sua idade" class="form-control"
+              [ngClass]="{'border-form-validator':form.idade.errors && (form.idade.dirty || form.idade.touched)}">
+            <div *ngIf="form.idade.errors && (form.idade.dirty || form.idade.touched)" class="msg-errors-rp"> Por favor informe a sua idade </div>
+
+            <span>IDHM</span> <input formControlName="iDHM" placeholder="digite sua iDHM" class="form-control"
+              [ngClass]="{'border-form-validator':form.iDHM.errors && (form.iDHM.dirty || form.iDHM.touched)}">
+            <div *ngIf="form.iDHM.errors && (form.iDHM.dirty || form.iDHM.touched)" class="msg-errors-rp"> Por favor informe a sua iDHM </div>
+
             <span>Instrução</span>
             <div class="form-select">
-              <select name="instrucao" formControlName="instrucao">
+              <select name="instrucao" formControlName="instrucao" class="form-control"
+                [ngClass]="{'border-form-validator':form.instrucao.errors && (form.instrucao.dirty || form.instrucao.touched)}">
                 <option *ngFor="let instrucao of instrucaoList" [value]="instrucao.value">{{instrucao.name}}</option>
               </select>
             </div>
+            <div *ngIf="form.instrucao.errors && (form.instrucao.dirty || form.instrucao.touched)" class="msg-errors-rp"> Por favor informe a instrução </div>
+
             <span>Ano de Escolaridade</span>
-            <input formControlName="anosdeescolaridade" placeholder="digite o ano de escolaridade">
+            <input formControlName="anosdeescolaridade" placeholder="digite o ano de escolaridade" class="form-control"
+              [ngClass]="{'border-form-validator':form.anosdeescolaridade.errors && (form.anosdeescolaridade.dirty || form.anosdeescolaridade.touched)}">
+            <div *ngIf="form.anosdeescolaridade.errors && (form.anosdeescolaridade.dirty || form.anosdeescolaridade.touched)" class="msg-errors-rp"> Por favor informe o ano de escolaridade </div>
+
             <span>Genero</span>
-            <div class="form-select">
+            <div class="form-select form-control">
               <input type="radio" id="m" name="genero" formControlName="genero" value="M">
               <label for="m">Masculino</label>
               <input type="radio" id="f" name="genero" formControlName="genero" value="F">
               <label for="f">Feminino</label>
             </div>
             <span>Later</span>
-            <div class="form-select">
+            <div class="form-select form-control">
               <input id="E" type="radio" name="later" formControlName="later" value="E">
               <label for="E">Esquerda</label>
               <input id="D" type="radio" name="later" formControlName="later" value="D">
               <label for="D">Direita</label>
             </div>
             <span>Duração</span>
-            <div class="form-select">
+            <div class="form-select form-control">
               <input id="40" type="radio" name="duracao" formControlName="duracao" value="40">
               <label for="40">40 min</label>
               <input id="80" type="radio" name="duracao" formControlName="duracao" value="80">
@@ -63,7 +81,7 @@
             </div>
 
             <div class="form-group text-center">
-              <button class="btn btn-secondary" type="submit" mat-raised-button color="secondary">Enviar</button>
+              <button class="btn btn-secondary" [disabled]="!cadastroForm.valid" type="submit" mat-raised-button color="secondary">Enviar</button>
               <button class="btn btn-secondary" type="reset" mat-raised-button color="secondary">Limpar</button>
             </div>
 
@@ -77,10 +95,4 @@
 
 
   </main>
-</div>
-
-<footer>
-  <div class="copyright">
-    ©️2020 - DESENVOLVIDO POR ELEVECOMUNICAÇÃO
-  </div>
-</footer>
+<!--</div>-->

@@ -23,6 +23,8 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatSelectModule} from '@angular/material/select';
 import {LayoutModule} from '@angular/cdk/layout';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { SharedService } from './shared.service';
 
 
 
@@ -38,6 +40,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
       BrowserModule,
       AppRoutingModule,
       BrowserAnimationsModule,
+      ReactiveFormsModule,
       FormsModule,
       HttpClientModule,
       FormsModule,
@@ -55,10 +58,10 @@ import {MatGridListModule} from '@angular/material/grid-list';
       MatRadioModule,
       MatSelectModule,
       LayoutModule,
-      ReactiveFormsModule,
-      MatGridListModule
+      MatGridListModule,
+      MatTooltipModule
    ],
-   providers: [],
+   providers: [SharedService],
    bootstrap: [
       AppComponent
    ]

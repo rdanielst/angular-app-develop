@@ -7,6 +7,7 @@ body {
   color: white;
 }
 .alert_ {
+  width: 90%;
   text-align: left !important;
   font-size: 16px;
   font-weight: bold;
@@ -109,7 +110,7 @@ img {
 
 
 
-.container {
+.container_ {
   font-family: "Helvetica Neue", Helvetica, Arial, "sans-serif";
 	background-color: #FFF;
 	width: 90%;
@@ -162,7 +163,7 @@ img {
   text-transform: uppercase;
 }
 
-.copyright {
+.copyright___ {
   text-align: center;
   background-color: #717070;
   color: #FFFFFF;
@@ -194,4 +195,28 @@ img {
     border-color: -internal-light-dark-color(rgb(118, 118, 118), rgb(195, 195, 195));
     text-align: center;
 
+}
+
+
+/* Validações Form */
+/* .ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948;
+}
+
+.ng-invalid:not(form){
+  border: 1px solid #F00;
+} */
+
+.msg-errors-rp {
+  flex: 2 1 300px;
+  font-size: 12px;
+  position: relative;
+  margin-left: 120px;
+  width: 300px;
+  color: #F00;
+  font-weight: bold;
+}
+
+.border-form-validator {
+  border: 1px solid #F00; /* red */
 }
