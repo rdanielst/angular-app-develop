@@ -5,13 +5,19 @@ import {CadastroCreateComponent} from './cadastro-create/cadastro-create.compone
 import {TreinarComponent} from './treinar/treinar.component';
 
 import {AppComponent} from './app.component';
+import { TreinoComponent } from './treino/treino.component';
+import { TesteComponent } from './teste/teste.component';
 
 
 
 const routes: Routes = [
+  {path: '', component: CadastroCreateComponent},
   {path: 'resultado/:id/:questionAudio/:selectedAudio', component: ResultadoComponent},
   {path: 'treinar/:id', component: TreinarComponent},
   {path: 'cadastro', component: CadastroCreateComponent},
+  {path: 'treino', component: TreinoComponent},
+  {path: 'treino/:id', component: TreinoComponent},
+  {path: 'teste', component: TesteComponent},
 
 ];
 

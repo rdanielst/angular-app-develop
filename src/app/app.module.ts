@@ -24,8 +24,11 @@ import {MatSelectModule} from '@angular/material/select';
 import {LayoutModule} from '@angular/cdk/layout';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { SharedService } from './shared.service';
-
+import { TreinoComponent } from './treino/treino.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { TesteComponent } from './teste/teste.component';
 
 
 @NgModule({
@@ -34,6 +37,8 @@ import { SharedService } from './shared.service';
       ResultadoComponent,
       CadastroCreateComponent,
       TreinarComponent,
+      TreinoComponent,
+      TesteComponent,
 
    ],
    imports: [
@@ -59,7 +64,9 @@ import { SharedService } from './shared.service';
       MatSelectModule,
       LayoutModule,
       MatGridListModule,
-      MatTooltipModule
+      MatTooltipModule,
+      MatProgressBarModule,
+      MatDialogModule
    ],
    providers: [SharedService],
    bootstrap: [

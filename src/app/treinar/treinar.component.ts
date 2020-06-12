@@ -15,6 +15,7 @@ import { SharedService } from '../shared.service';
 })
 export class TreinarComponent implements OnInit {
 
+  // tslint:disable-next-line:variable-name
   files_in_directories = [];
   userId: number;
   title = 'testes';
@@ -71,12 +72,14 @@ export class TreinarComponent implements OnInit {
     this.shared.updatedDataSelection('TREINO');
     this.n_audio = Math.floor(Math.random() * this.playlist.length - 1);
     this.questionAudio = this.playlist[this.n_audio].name;
+    // this.n_audio.isActive = true;
 
-    // this.route.paramMap.subscribe(x => {
-    console.log(`param: ${this.route.snapshot.params.id}`);
-    this.userId = this.route.snapshot.params.id;
+    this.route.paramMap.subscribe(x => {
+      console.log(`param: ${this.route.snapshot.params.id}`);
+      this.userId = this.route.snapshot.params.id;
+    });
 
-    this.tocarSequencia();
+    // this.tocarSequencia();
   }
 
 
@@ -85,19 +88,28 @@ export class TreinarComponent implements OnInit {
 
   }
 
-  @HostListener('window:keydown', ['$event'])
+  @HostListener('document:keydown.enter', ['$event'])
+  iniciarTeste(event: KeyboardEvent) {
+    console.log('Key pressed', event.key);
+  }
+
+  // @HostListener('document:keydown.enter', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
     this.keypressed = event.key;
-    if (event.key.toLowerCase() === 'enter'.toLowerCase()) {
+    // console.log('Key pressed', event.key);
+
+    if (event.key.toLowerCase() === 'enter') {
       clearTimeout(this.tempox);
       this.playlist.forEach(x => {
+        // console.log(x.name, event.key);
         if (x.isActive) {
           this.selectedAudio = x.name;
+          console.log('ACTIVE: ' + x.name, event.key);
         }
       });
-      console.log(`teste`);
+      // console.log(`teste`);
       this.selectedAudio = 'animais';
-      this.router.navigate(['resultado', 1, this.questionAudio, this.selectedAudio], {skipLocationChange: false});
+      // this.router.navigate(['resultado', 1, this.questionAudio, this.selectedAudio], {skipLocationChange: false});
     }
   }
 
@@ -118,6 +130,7 @@ export class TreinarComponent implements OnInit {
           /* sorteio dos audios*/
           this.n_audio = Math.floor(Math.random() * this.playlist.length - 1);
           this.playlist.forEach(x => {
+            console.log(x.name);
             if (x.isActive) {
               x.isActive = false;
             }

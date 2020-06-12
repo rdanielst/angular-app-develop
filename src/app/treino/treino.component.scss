@@ -1,0 +1,57 @@
+* {
+  box-sizing: border-box;
+}
+
+
+.container {
+  text-align: center;
+  position: relative;
+
+  .block {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgb(255, 255, 255, .9);
+    margin-left: -15px;
+    z-index: 2;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+  }
+
+}
+
+.display-teste {
+  display: flex;
+  justify-content: space-around;
+}
+
+.certo {
+  animation: color-certo 2s;
+}
+
+.errado {
+  animation: color-erro 2s;
+}
+
+
+@keyframes color-certo {
+  0% {
+    color: greenyellow;
+  }
+
+  100% {
+    color: black;
+  }
+}
+
+@keyframes color-erro {
+  0% {
+    color: red;
+  }
+
+  100% {
+    color: black;
+  }
+}

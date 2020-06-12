@@ -1,0 +1,24 @@
+<div class="container">
+    <article class="d-flex flex-column">
+      <P>
+        Neste teste o computador emitirá alternadamente, sons da voz humana proferindo nomes de&nbsp;
+        <strong>objetos, animais ou comidas </strong>
+        <br>
+
+        Quando você ouvir um nome do grupo CERTO, pressione a barra de espaço ou toque na barra vermelha
+        abaixo o mais rápido que puder. <br>  Se ouvir um nome do grupo errado, não tome nenhuma ação.
+      </P>
+    </article>
+
+      <!-- Highlight Card -->
+      <div class="card highlight-card card-small d-flex justify-content-center">
+
+        <span>Pressione a tecla "ENTER" quando ouvir: <span class="text-success font-weight-bold"> {{ grupoCerto | uppercase }} </span> </span>
+      </div>
+
+      <button (click)="iniciarTeste()">INICIAR</button>
+      <h1>{{ tempoTeste }}</h1>
+      {{ resultadoTeste | json }}
+</div>
+
+

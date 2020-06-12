@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="block" *ngIf="reproduzindo">
+
+    <h1>AUMENTE O SOM</h1>
+
+  </div>
+
+ <h3>Essa é uma página de treinamento sem efeito no resultado</h3>
+ <p>Neste teste o computador emitirá alternadamente, sons da voz humana proferindo nomes de <br><b>objetos, animais ou alimentos.</b></p>
+
+ <p>Quando você ouvir um nome do grupo CERTO, pressione qualquer tecla o mais rápido que puder. <br>Se ouvir um nome do grupo errado, não tome nenhuma ação. </p>
+
+ <!-- <p><b>*** PRESSIONE QUALQUER TECLA PARA INICIAR O TESTE ***</b></p> -->
+ <button *ngIf="!fim" mat-raised-button color="primary" (click)="tocarSequencia()">
+   <span>*** CLIQUE AQUI PARA TREINAR ***</span>
+  </button>
+ <button *ngIf="fim" mat-raised-button (click)="resetTeste()">
+   <mat-icon>replay</mat-icon>
+   <span>TREINAR NOVAMENTE</span>
+  </button>
+</div>
+
+<div class="teste">
+  <hr>
+  <div class="display-teste">
+    <div class="teste-cor" #grupo>
+      <p *ngIf="!fim"> GRUPO CERTO: <b>{{ grupoCorreto | uppercase }}</b></p>
+      <button *ngIf="fim" mat-raised-button color="accent"> *** IR PARA O TESTE *** </button>
+    </div>
+    <!-- <div class="click">
+      <p>MARCADOR: <b *ngIf="reproduzindo">{{ grupoMarcado === grupoCorreto ? 'CERTO':'ERRADO' }}</b></p>
+    </div> -->
+  </div>
+  <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
+  <hr>
+</div>
+<!-- <button (click)="tocarSequencia()">INICIAR</button> -->
+
+
+<!--
+<p>{{ contatdor }}</p>
+
+<button (click)="tocarSequencia()">INICIAR</button>
+
+<p>Audio atual: {{ audioAtual }}</p>
+<p>Marcado: {{ grupoMarcado }}</p>
+
+  TESTE <br>
+  <ul>
+    <li *ngFor="let t of teste">{{ t.grupoMarcado }} - {{ t.correto ? 'certo' : 'errado' }}</li>
+  </ul>
+-->
+
+

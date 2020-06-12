@@ -24,6 +24,13 @@
   <header>
     <h1>{{ tituloPagina }}</h1>
   </header>
+  <nav class="menu">
+    <ul>
+      <li><a routerLink="/">INÍCIO</a> </li>
+      <li *ngIf="tituloPagina === 'TREINO'"><a routerLink="treino">TREINAR</a></li>
+      <li *ngIf="tituloPagina === 'TREINO'" ><a routerLink="teste">PULAR TREINO</a></li>
+    </ul>
+  </nav>
   <main>
     <router-outlet></router-outlet>
   </main>

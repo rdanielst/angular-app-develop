@@ -37,7 +37,7 @@ export class CadastroCreateComponent implements OnInit {
     nome: ['', Validators.required],
   email:  ['', Validators.required],
   idade: ['', Validators.required],
-  iDHM: ['', Validators.required],
+  iDHM: [''],
   instrucao: ['', Validators.required],
   anosdeescolaridade: ['', Validators.required],
   genero: ['', Validators.required],
@@ -50,11 +50,14 @@ export class CadastroCreateComponent implements OnInit {
   constructor(
     private cadastroService: CadastroService,
     private router: Router,
-    private fb: FormBuilder, private shared: SharedService) { }
+    private fb: FormBuilder, private shared: SharedService) {
+
+      this.shared.updatedDataSelection('Teste Computadorizado de Atenção auditiva');
+
+    }
 
     ngOnInit(): void {
 
-      this.shared.updatedDataSelection('Teste Computadorizado de Atenção auditiva');
 
     }
 
@@ -70,7 +73,7 @@ export class CadastroCreateComponent implements OnInit {
         this.cadastroService.showMessage('Criado!');
         console.log(resp);
         const usuarioId = cadastro.id;
-        this.router.navigate([`/treinar/${usuarioId}`]);
+        this.router.navigate([`/treino/${usuarioId}`]);
       });
     }
 }

@@ -1,6 +1,6 @@
 body {
   font-family: Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";
-  background-color: #EEE;
+  background-color: rgb(118, 118, 118, .5);
 }
 .titulo {
   background: #56B4CD;
@@ -53,6 +53,7 @@ img {
 .container-form {
  max-width: 500px;
  display: flex;
+ flex-wrap: wrap;
  flex-direction: column;
 }
 
@@ -79,7 +80,7 @@ img {
 }
 
 .container-form form input{
-  flex: 2 1 300px;
+  flex: 1 1 300px;
   padding: 7px;
   margin: 7px 0 0 0;
 }
@@ -198,14 +199,7 @@ img {
 }
 
 
-/* Validações Form */
-/* .ng-valid[required], .ng-valid.required  {
-  border-left: 5px solid #42A948;
-}
 
-.ng-invalid:not(form){
-  border: 1px solid #F00;
-} */
 
 .msg-errors-rp {
   flex: 2 1 300px;
@@ -220,3 +214,6 @@ img {
 .border-form-validator {
   border: 1px solid #F00; /* red */
 }
+
+
+

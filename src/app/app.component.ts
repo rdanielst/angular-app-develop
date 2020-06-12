@@ -32,12 +32,14 @@ export class AppComponent implements OnInit {
 
   tituloPagina = '';
 
-  constructor(private shared: SharedService) {
-
+  constructor(private shared: SharedService, private router: Router) {
   }
 
   ngOnInit() {
-    this.shared.atual.subscribe( p => this.tituloPagina = p);
+    this.shared.atual.subscribe( p => {
+      this.tituloPagina = p;
+      console.log(p);
+    });
   }
 
 }
