@@ -66,7 +66,7 @@ import { TesteComponent } from './teste/teste.component';
       MatGridListModule,
       MatTooltipModule,
       MatProgressBarModule,
-      MatDialogModule
+      MatDialogModule,
    ],
    providers: [SharedService],
    bootstrap: [

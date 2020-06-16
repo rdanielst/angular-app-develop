@@ -69,12 +69,18 @@ export class CadastroCreateComponent implements OnInit {
 
   onFormSubmit(cadastro: Cadastro) {
 
-        this.cadastroService.createCadastro(cadastro).subscribe((resp) => {
+      console.log(this.cadastroForm.get('duracao').value);
+      const dur = this.cadastroForm.get('duracao').value;
+
+      this.shared.salvarLocalStorage({ duracao: dur }, 'duracao');
+      this.router.navigate([`/treino/1`]);
+
+        /*this.cadastroService.createCadastro(cadastro).subscribe((resp) => {
         this.cadastroService.showMessage('Criado!');
         console.log(resp);
         const usuarioId = cadastro.id;
         this.router.navigate([`/treino/${usuarioId}`]);
-      });
+      });*/
     }
 }
 

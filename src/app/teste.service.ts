@@ -58,11 +58,15 @@ export class TesteService {
   minutos = 0;
   segundos = 0;
   segundosTotal = 0;
-  minTotal = .5;
+  minTotal = 5;
 
 
   private tempo = new BehaviorSubject<string>('00:00');
   tempoTeste: Observable<string> = this.tempo.asObservable();
+
+
+  private audioTocando = new BehaviorSubject<boolean>(false);
+  tocando: Observable<boolean> = this.audioTocando.asObservable();
 
 
   getGrupoCerto() {
@@ -94,20 +98,24 @@ export class TesteService {
       this.contatdor += 1;
       this.horaAudio = new Date().getTime();
       audio.play().then(a => {
-
+        this.reprAudio = true;
+        this.audioTocando.next(true);
       });
 
     });
   }
 
 
-  iniciarTesteTempo() {
+  iniciarTesteTempo(duracao?: number) {
 
     if (this.reproduzindo) { return; }
 
 
     const source = timer(0, 1000);
 
+    if (duracao) {
+      this.minTotal = duracao;
+    }
 
     if (this.controle === 0) {
       this.segundosTotal = this.minTotal * 60;
@@ -131,9 +139,13 @@ export class TesteService {
 
   private checkTimer(min, seg) {
     if (min === 0 && seg === '00') {
-      if (this.sourceTimer) { this.sourceTimer.unsubscribe(); }
-      if (this.subscription) { this.subscription.unsubscribe(); }
+      this.finalizaTimer();
     }
+  }
+
+  finalizaTimer() {
+    if (this.sourceTimer) { this.sourceTimer.unsubscribe(); }
+    if (this.subscription) { this.subscription.unsubscribe(); }
   }
 
 
@@ -144,8 +156,8 @@ export class TesteService {
     this.grupoMarcado = this.audioAtual;
     this.horaClick = new Date().getTime();
     const dif = this.horaClick - this.horaAudio;
-    console.log(event.key, dif);
-    console.log(this.grupoCorreto, this.audioAtual);
+    // console.log(event.key, dif);
+    // console.log(this.grupoCorreto, this.audioAtual);
 
     this.addResultado();
 
@@ -154,20 +166,22 @@ export class TesteService {
 
   addResultado() {
     if (this.reproduzindo) {
-      if (this.grupoCorreto === this.grupoMarcado) {
-        this.clickCerto = true;
-        // this.toogleClass(true);
-        this.teste.push(
-          { grupoMarcado: this.grupoMarcado, correto: true, click: this.horaClick - this.horaAudio }
-        );
-      } else {
 
-        this.clickCerto = false;
-        // this.toogleClass(false);
+      if (this.reprAudio) {
+        this.reprAudio = false;
+        this.audioTocando.next(false);
+        if (this.grupoCorreto === this.grupoMarcado) {
+          this.clickCerto = true;
+          this.teste.push(
+            { grupoMarcado: this.grupoMarcado, correto: true, click: this.horaClick - this.horaAudio }
+          );
+        } else {
+          this.clickCerto = false;
+          this.teste.push(
+            { grupoMarcado: this.grupoMarcado, correto: false, click: this.horaClick - this.horaAudio }
+          );
+        }
 
-        this.teste.push(
-          { grupoMarcado: this.grupoMarcado, correto: false, click: this.horaClick - this.horaAudio }
-        );
       }
     }
   }

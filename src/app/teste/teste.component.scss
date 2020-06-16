@@ -1,0 +1,33 @@
+.container {
+  text-align: center;
+}
+
+
+.certo {
+  animation: color-certo 2s;
+}
+
+.errado {
+  animation: color-erro 2s;
+}
+
+
+@keyframes color-certo {
+  0% {
+    color: greenyellow;
+  }
+
+  100% {
+    color: black;
+  }
+}
+
+@keyframes color-erro {
+  0% {
+    color: red;
+  }
+
+  100% {
+    color: black;
+  }
+}
