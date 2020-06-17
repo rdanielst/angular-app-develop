@@ -13,6 +13,7 @@ import { TesteComponent } from './teste/teste.component';
 const routes: Routes = [
   {path: '', component: CadastroCreateComponent},
   {path: 'resultado/:id/:questionAudio/:selectedAudio', component: ResultadoComponent},
+  {path: 'resultado', component: ResultadoComponent},
   {path: 'treinar/:id', component: TreinarComponent},
   {path: 'cadastro', component: CadastroCreateComponent},
   {path: 'treino', component: TreinoComponent},

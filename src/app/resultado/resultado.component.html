@@ -1,9 +1,52 @@
-<div class="card" style="width: 18rem;">
+<!-- <div class="card" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title">Questionário Áudio</h5>
     <h6 class="card-subtitle mb-2 text-muted">Resultado</h6>
     <p class="card-text alert alert-primary">Resposta Correta: {{questionAudio}}</p>
     <p [class]="selectedAudio === questionAudio ? 'alert card-text alert-success' : 'alert  card-text alert-danger'">Resposta do Usúario: {{selectedAudio}}</p>
-
   </div>
-</div>
+</div> -->
+<hr>
+
+
+<table>
+  <tr>
+    <td width="250">Tempos dos acertos</td>
+    <td>Menor tempo: {{ resultado.menor_tempo_certo }}ms
+      | Maior tempo: {{ resultado.maior_tempo_certo }}ms | Média: {{ resultado.media_acertos | number: '1.1-2' }}</td>
+  </tr>
+  <tr>
+    <td>Tempos dos erros</td>
+    <td>Menor tempo: {{ resultado.menor_tempo_erro }}ms
+      | Maior tempo: {{ resultado.maior_tempo_erro }}ms | Média: {{ resultado.media_global | number: '1.1-2' }}</td>
+  </tr>
+  <tr>
+    <td>Tempos globais</td>
+    <td>Menor tempo: {{ resultado.menor_tempo_global }}ms
+      | Maior tempo: {{ resultado.maior_tempo_global }}ms | Média: {{ resultado.media_acertos | number: '1.1-2' }}</td>
+  </tr>
+  <tr>
+    <td>Erros por comissão</td>
+    <td>{{ resultado.erros_comissao }}</td>
+  </tr>
+  <tr>
+    <td>Erros por omissão</td>
+    <td>{{ resultado.erros_omissao }}</td>
+  </tr>
+  <tr>
+    <td>Desvio padrão de acertos</td>
+    <td>{{ resultado.desvio_padrao_certo | number: '1.1-2' }}</td>
+  </tr>
+  <tr>
+    <td>Desvio padrão de erros</td>
+    <td>{{ resultado.desvio_padrao_erro | number: '1.1-2' }}</td>
+  </tr>
+  <tr>
+    <td>Desvio padrão total</td>
+    <td>{{ resultado.desvio_padrao_global | number: '1.1-2' }}</td>
+  </tr>
+  <tr>
+    <td>Disparados</td>
+    <td>{{ resultado.disparados }}</td>
+  </tr>
+</table>

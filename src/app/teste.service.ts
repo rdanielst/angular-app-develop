@@ -1,6 +1,7 @@
 import { Injectable, HostListener } from '@angular/core';
 import { Subscription, timer, Observable, BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -68,6 +69,8 @@ export class TesteService {
   private audioTocando = new BehaviorSubject<boolean>(false);
   tocando: Observable<boolean> = this.audioTocando.asObservable();
 
+  constructor(private router: Router) {}
+
 
   getGrupoCerto() {
     const i = Math.floor(Math.random() * this.playlist.length);
@@ -88,6 +91,7 @@ export class TesteService {
     this.reproduzindo = true;
     this.subscription = intervalo.pipe(
       tap(t => {
+        this.grupoMarcado = null;
         this.reprAudio = true;
         i = Math.floor(Math.random() * this.playlist.length);
         this.audioAtual = this.playlist[i].name;
@@ -100,6 +104,7 @@ export class TesteService {
       audio.play().then(a => {
         this.reprAudio = true;
         this.audioTocando.next(true);
+        this.registroListaReproducao();
       });
 
     });
@@ -146,12 +151,25 @@ export class TesteService {
   finalizaTimer() {
     if (this.sourceTimer) { this.sourceTimer.unsubscribe(); }
     if (this.subscription) { this.subscription.unsubscribe(); }
+
+    localStorage.setItem('teste', JSON.stringify(this.teste));
+
+    this.router.navigate(['/resultado']);
+
+  }
+
+  registroListaReproducao() {
+    this.teste.push(
+      { id: this.contatdor, grupoMarcado: null,
+        correto: null, click: null, grupoCerto:
+        this.grupoCorreto, grupoReproduzido: this.audioAtual }
+    );
   }
 
 
   marcador(event: KeyboardEvent) {
 
-    if ( !this.reproduzindo ) {return; }
+    if ( !this.reproduzindo ) { return; }
 
     this.grupoMarcado = this.audioAtual;
     this.horaClick = new Date().getTime();
@@ -170,22 +188,43 @@ export class TesteService {
       if (this.reprAudio) {
         this.reprAudio = false;
         this.audioTocando.next(false);
+
+        const x = this.getUltimoAudio();
+
         if (this.grupoCorreto === this.grupoMarcado) {
           this.clickCerto = true;
-          this.teste.push(
-            { grupoMarcado: this.grupoMarcado, correto: true, click: this.horaClick - this.horaAudio }
-          );
+          x.grupoMarcado = this.grupoMarcado;
+          x.click = this.horaClick - this.horaAudio;
+          x.correto = true;
         } else {
           this.clickCerto = false;
-          this.teste.push(
-            { grupoMarcado: this.grupoMarcado, correto: false, click: this.horaClick - this.horaAudio }
-          );
+          x.grupoMarcado = this.grupoMarcado;
+          x.click = this.horaClick - this.horaAudio;
+          x.correto = false;
         }
 
       }
     }
   }
 
+  getUltimoAudio() {
+    let i = this.teste.length;
+    if (i > 0) {
+      i = i - 1;
+    }
+    console.log(this.teste[i]);
+    return this.teste[i];
+  }
+
+  desvioPadrao(lista: []) {
+
+    const media = lista.reduce((total, valor) => total + valor / lista.length, 0);
+    const variancia = lista.reduce((total, valor) => total + Math.pow(media - valor, 2) / lista.length, 0);
+    const desvioPadrao = Math.sqrt(variancia);
+
+    return desvioPadrao;
+
+  }
 
 
   private pad(digit: any) {

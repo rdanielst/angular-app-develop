@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { TesteService } from '../teste.service';
 import { SharedService } from '../shared.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-teste',
@@ -33,7 +34,7 @@ export class TesteComponent implements OnInit, OnDestroy {
   }
 
   iniciarTeste() {
-    this.ts.iniciarTesteTempo(this.duracaoTeste);
+    this.ts.iniciarTesteTempo(2);
     this.ts.tempoTeste.subscribe( t => {
       this.tempoTeste = t;
     });
@@ -49,7 +50,6 @@ export class TesteComponent implements OnInit, OnDestroy {
   marcador(event: KeyboardEvent) {
     this.ts.marcador(event);
     this.resultadoTeste = this.ts.teste;
-
 
     const ultimo = [... this.resultadoTeste].pop();
 

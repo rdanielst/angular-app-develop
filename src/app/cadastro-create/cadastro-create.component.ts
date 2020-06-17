@@ -73,14 +73,14 @@ export class CadastroCreateComponent implements OnInit {
       const dur = this.cadastroForm.get('duracao').value;
 
       this.shared.salvarLocalStorage({ duracao: dur }, 'duracao');
-      this.router.navigate([`/treino/1`]);
+      // this.router.navigate([`/treino/1`]);
 
-        /*this.cadastroService.createCadastro(cadastro).subscribe((resp) => {
+      this.cadastroService.createCadastro(cadastro).subscribe((resp) => {
         this.cadastroService.showMessage('Criado!');
         console.log(resp);
         const usuarioId = cadastro.id;
         this.router.navigate([`/treino/${usuarioId}`]);
-      });*/
+      });
     }
 }
 
