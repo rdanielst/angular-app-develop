@@ -212,7 +212,7 @@ export class TesteService {
     if (i > 0) {
       i = i - 1;
     }
-    console.log(this.teste[i]);
+    // console.log(this.teste[i]);
     return this.teste[i];
   }
 

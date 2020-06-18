@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import { SharedService } from '../shared.service';
+import { min } from 'moment';
 
 @Component({
   selector: 'app-test',
@@ -11,240 +12,7 @@ export class ResultadoComponent implements OnInit {
   @Input() selectedAudio: string;
   @Input() questionAudio: string;
 
-  testeUsuario = [
-    {
-      id: 1,
-      grupoMarcado: 'comida',
-      correto: false,
-      click: 1300,
-      grupoCerto: 'animais',
-      grupoReproduzido: 'comida'
-    },
-    {
-      id: 2,
-      grupoMarcado: null,
-      correto: null,
-      click: null,
-      grupoCerto: 'animais',
-      grupoReproduzido: 'comida'
-    },
-    {
-      id: 3,
-      grupoMarcado: 'animais',
-      correto: true,
-      click: 1008,
-      grupoCerto: 'animais',
-      grupoReproduzido: 'animais'
-    },
-    {
-      id: 4,
-      grupoMarcado: 'animais',
-      correto: true,
-      click: 1244,
-      grupoCerto: 'animais',
-      grupoReproduzido: 'animais'
-    },
-    {
-      id: 5,
-      grupoMarcado: 'objeto',
-      correto: false,
-      click: 1082,
-      grupoCerto: 'animais',
-      grupoReproduzido: 'objeto'
-    },
-    {
-      id: 6,
-      grupoMarcado: 'animais',
-      correto: true,
-      click: 1091,
-      grupoCerto: 'animais',
-      grupoReproduzido: 'animais'
-    },
-    {
-      id: 7,
-      grupoMarcado: 'animais',
-      correto: true,
-      click: 1850,
-      grupoCerto: 'animais',
-      grupoReproduzido: 'animais'
-    },
-    {
-      id: 8,
-      grupoMarcado: 'comida',
-      correto: false,
-      click: 1846,
-      grupoCerto: 'animais',
-      grupoReproduzido: 'comida'
-    },
-    {
-      id: 9,
-      grupoMarcado: null,
-      correto: null,
-      click: null,
-      grupoCerto: 'animais',
-      grupoReproduzido: 'comida'
-    },
-    {
-      id: 10,
-      grupoMarcado: 'comida',
-      correto: false,
-      click: 1924,
-      grupoCerto: 'animais',
-      grupoReproduzido: 'comida'
-    },
-    {
-      id: 11,
-      grupoMarcado: null,
-      correto: null,
-      click: null,
-      grupoCerto: 'animais',
-      grupoReproduzido: 'objeto'
-    },
-    {
-      id: 12,
-      grupoMarcado: null,
-      correto: null,
-      click: null,
-      grupoCerto: 'animais',
-      grupoReproduzido: 'objeto'
-    },
-    {
-      id: 13,
-      grupoMarcado: 'animais',
-      correto: true,
-      click: 814,
-      grupoCerto: 'animais',
-      grupoReproduzido: 'animais'
-    },
-    {
-      id: 14,
-      grupoMarcado: 'animais',
-      correto: true,
-      click: 782,
-      grupoCerto: 'animais',
-      grupoReproduzido: 'animais'
-    },
-    {
-      id: 15,
-      grupoMarcado: 'animais',
-      correto: true,
-      click: 1020,
-      grupoCerto: 'animais',
-      grupoReproduzido: 'animais'
-    },
-    {
-      id: 16,
-      grupoMarcado: null,
-      correto: null,
-      click: null,
-      grupoCerto: 'animais',
-      grupoReproduzido: 'objeto'
-    },
-    {
-      id: 17,
-      grupoMarcado: null,
-      correto: null,
-      click: null,
-      grupoCerto: 'animais',
-      grupoReproduzido: 'comida'
-    },
-    {
-      id: 18,
-      grupoMarcado: 'animais',
-      correto: true,
-      click: 959,
-      grupoCerto: 'animais',
-      grupoReproduzido: 'animais'
-    },
-    {
-      id: 19,
-      grupoMarcado: null,
-      correto: null,
-      click: null,
-      grupoCerto: 'animais',
-      grupoReproduzido: 'animais'
-    },
-    {
-      id: 20,
-      grupoMarcado: null,
-      correto: null,
-      click: null,
-      grupoCerto: 'animais',
-      grupoReproduzido: 'objeto'
-    },
-    {
-      id: 21,
-      grupoMarcado: null,
-      correto: null,
-      click: null,
-      grupoCerto: 'animais',
-      grupoReproduzido: 'objeto'
-    },
-    {
-      id: 22,
-      grupoMarcado: 'comida',
-      correto: false,
-      click: 742,
-      grupoCerto: 'animais',
-      grupoReproduzido: 'comida'
-    },
-    {
-      id: 23,
-      grupoMarcado: null,
-      correto: null,
-      click: null,
-      grupoCerto: 'animais',
-      grupoReproduzido: 'comida'
-    },
-    {
-      id: 24,
-      grupoMarcado: null,
-      correto: null,
-      click: null,
-      grupoCerto: 'animais',
-      grupoReproduzido: 'objeto'
-    },
-    {
-      id: 25,
-      grupoMarcado: 'objeto',
-      correto: false,
-      click: 1132,
-      grupoCerto: 'animais',
-      grupoReproduzido: 'objeto'
-    },
-    {
-      id: 26,
-      grupoMarcado: null,
-      correto: null,
-      click: null,
-      grupoCerto: 'animais',
-      grupoReproduzido: 'objeto'
-    },
-    {
-      id: 27,
-      grupoMarcado: null,
-      correto: null,
-      click: null,
-      grupoCerto: 'animais',
-      grupoReproduzido: 'objeto'
-    },
-    {
-      id: 28,
-      grupoMarcado: null,
-      correto: null,
-      click: null,
-      grupoCerto: 'animais',
-      grupoReproduzido: 'comida'
-    },
-    {
-      id: 29,
-      grupoMarcado: 'animais',
-      correto: true,
-      click: 704,
-      grupoCerto: 'animais',
-      grupoReproduzido: 'animais'
-    }
-  ];
+  testeUsuario = [];
 
     resultado = {
       menor_tempo_certo: 0,
@@ -280,25 +48,14 @@ export class ResultadoComponent implements OnInit {
 
   ngOnInit(): void {
 
-    const minCerto = this.testeUsuario.reduce((acc, t) => t.click < acc && t.correto ? t.click : acc, this.testeUsuario[0].click );
+    console.log(this.testeUsuario);
+
     const maxCerto = this.testeUsuario.reduce((acc, t) => t.click > acc && t.correto ? t.click : acc, this.testeUsuario[0].click );
-
-    const minErro = this.testeUsuario.reduce((acc, t) => t.click < acc && t.correto === false ? t.click : acc, this.testeUsuario[0].click );
     const maxErro = this.testeUsuario.reduce((acc, t) => t.click > acc && t.correto === false ? t.click : acc, this.testeUsuario[0].click );
-
-    const minGlobal = this.testeUsuario.reduce((acc, t) => t.click < acc && t.click !== null ? t.click : acc, this.testeUsuario[0].click);
     const maxGlobal = this.testeUsuario.reduce((acc, t) => t.click > acc && t.click !== null ? t.click : acc, this.testeUsuario[0].click);
 
-
-
-
-    this.resultado.menor_tempo_certo = minCerto;
     this.resultado.maior_tempo_certo = maxCerto;
-
-    this.resultado.menor_tempo_erro = minErro;
     this.resultado.maior_tempo_erro = maxErro;
-
-    this.resultado.menor_tempo_global = minGlobal;
     this.resultado.maior_tempo_global = maxGlobal;
 
     this.calcularResultado();
@@ -316,6 +73,9 @@ export class ResultadoComponent implements OnInit {
     let qtdErro = 0;
     let qtdErroNull = 0;
     let qtdGlobal = 0;
+    let minErr = 4250;
+    let minCer = 4250;
+    let minGlo = 4250;
 
     const listaCerto = [];
     const listaErro = [];
@@ -329,11 +89,19 @@ export class ResultadoComponent implements OnInit {
         qtdCerto += 1;
         mediaCerto += r.click;
         listaCerto.push(r.click);
+
+        const v = this.testeUsuario[i].click;
+        minCer = (v < minCer) ? v : minCer;
+
       } else if (r.correto === false) {
-        console.log(r);
+
         qtdErro += 1;
         mediaErro += r.click;
         listaErro.push(r.click);
+
+        const v = this.testeUsuario[i].click;
+        minErr = (v < minErr) ? v : minErr;
+
       } else if (r.grupoCerto === r.grupoReproduzido && r.click === null) {
         qtdErroNull += 1;
       }
@@ -341,17 +109,25 @@ export class ResultadoComponent implements OnInit {
       if (r.click !== null) {
         qtdGlobal += 1;
         mediaGlobal += r.click;
+
+        const v = this.testeUsuario[i].click;
+        minGlo = (v < minGlo) ? v : minGlo;
+
       }
 
       listaGlobal.push(r.click);
 
     });
 
+    console.log(minErr);
 
     mediaCerto = mediaCerto / qtdCerto;
     mediaErro = mediaErro / qtdErro;
     mediaGlobal = mediaGlobal / qtdGlobal;
 
+    this.resultado.menor_tempo_certo = minCer;
+    this.resultado.menor_tempo_erro = minErr;
+    this.resultado.menor_tempo_global = minGlo;
     this.resultado.media_acertos = mediaCerto;
     this.resultado.media_erros = mediaErro;
     this.resultado.media_global = mediaGlobal;
@@ -363,7 +139,7 @@ export class ResultadoComponent implements OnInit {
     this.resultado.desvio_padrao_global = this.desvioPadrao(listaGlobal);
 
 
-    console.log(mediaCerto, mediaErro);
+    // console.log(mediaCerto, mediaErro);
 
   }
 

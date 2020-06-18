@@ -13,7 +13,7 @@ export class TesteComponent implements OnInit, OnDestroy {
   grupoCerto = '';
   tempoTeste = '';
   resultadoTeste = [];
-  duracaoTeste = 0;
+  duracaoTeste = 5;
 
   @ViewChild('grupo') grupo: ElementRef;
 
@@ -34,7 +34,7 @@ export class TesteComponent implements OnInit, OnDestroy {
   }
 
   iniciarTeste() {
-    this.ts.iniciarTesteTempo(2);
+    this.ts.iniciarTesteTempo(this.duracaoTeste);
     this.ts.tempoTeste.subscribe( t => {
       this.tempoTeste = t;
     });
